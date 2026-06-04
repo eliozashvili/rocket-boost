@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
    [SerializeField] private float rotationStrength;
 
    private Rigidbody _rb;
+   private AudioSource _audioSource;
 
    private bool _isThrusting;
    private float _rotationInputValue;
@@ -16,6 +17,7 @@ public class Movement : MonoBehaviour
    private void Start()
    {
       _rb = GetComponent<Rigidbody>();
+      _audioSource = GetComponent<AudioSource>();
    }
 
    private void OnEnable()
@@ -23,8 +25,17 @@ public class Movement : MonoBehaviour
       thrust.Enable();
       rotation.Enable();
 
-      thrust.performed += _ => _isThrusting = true;
-      thrust.canceled += _ => _isThrusting = false;
+      thrust.performed += _ =>
+      {
+         _isThrusting = true;
+         if (!_audioSource.isPlaying) _audioSource.Play();
+      };
+
+      thrust.canceled += _ =>
+      {
+         _isThrusting = false;
+         _audioSource.Stop();
+      };
 
       rotation.performed += context => _rotationInputValue = context.ReadValue<float>();
       rotation.canceled += _ =>  _rotationInputValue = 0f;
