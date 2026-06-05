@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
    [SerializeField] private InputAction rotation;
    [SerializeField] private float thrustStrength;
    [SerializeField] private float rotationStrength;
-   [SerializeField] private AudioClip engineThrustSound;
+   [SerializeField] private AudioClip engineThrustSfx;
 
    private Rigidbody _rb;
    private AudioSource _audioSource;
@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
       thrust.performed += _ =>
       {
          _isThrusting = true;
-         if (!_audioSource.isPlaying) _audioSource.PlayOneShot(engineThrustSound);
+         if (!_audioSource.isPlaying) _audioSource.PlayOneShot(engineThrustSfx);
       };
 
       thrust.canceled += _ =>

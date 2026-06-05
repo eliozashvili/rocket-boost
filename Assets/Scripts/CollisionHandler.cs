@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class CollisionHandler : MonoBehaviour
 {
-    [SerializeField] private AudioClip crashSound;
-    [SerializeField] private AudioClip levelClearSound;
+    [SerializeField] private AudioClip crashSfx;
+    [SerializeField] private AudioClip successSfx;
+    [SerializeField] private ParticleSystem crashParticle;
+    [SerializeField] private ParticleSystem successParticle;
 
     private readonly WaitForSeconds _delay = new (2f);
     private Movement _movementScript;
@@ -27,10 +29,12 @@ public class CollisionHandler : MonoBehaviour
             case "Friendly":
                 break;
             case "Finish":
-                StartCoroutine(HandleAfterDelay(isNext: true, reload: false, audioClip: levelClearSound));
+                StartCoroutine(HandleAfterDelay(isNext: true, reload: false, audioClip: successSfx));
+                successParticle.Play();
                 break;
             default:
-                StartCoroutine(HandleAfterDelay(isNext: false, reload: true, audioClip: crashSound));
+                StartCoroutine(HandleAfterDelay(isNext: false, reload: true, audioClip: crashSfx));
+                crashParticle.Play();
                 break;
         }
     }
