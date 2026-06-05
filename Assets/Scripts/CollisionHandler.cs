@@ -41,6 +41,7 @@ public class CollisionHandler : MonoBehaviour
 
     private IEnumerator HandleAfterDelay(bool isNext, bool reload, AudioClip audioClip)
     {
+        // disabling Movement.cs forces to execute OnDisable method
         _movementScript.enabled = false;
         _rb.isKinematic = true;
 

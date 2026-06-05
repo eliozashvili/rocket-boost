@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
    [SerializeField] private float thrustStrength;
    [SerializeField] private float rotationStrength;
    [SerializeField] private AudioClip engineThrustSfx;
+   [SerializeField] private ParticleSystem mainEngineParticle;
+   [SerializeField] private ParticleSystem leftEngineParticle;
+   [SerializeField] private ParticleSystem rightEngineParticle;
 
    private Rigidbody _rb;
    private AudioSource _audioSource;
@@ -31,17 +34,47 @@ public class Movement : MonoBehaviour
       thrust.performed += _ =>
       {
          _isThrusting = true;
+
          if (!_audioSource.isPlaying) _audioSource.PlayOneShot(engineThrustSfx);
+
+         mainEngineParticle.Play();
       };
 
       thrust.canceled += _ =>
       {
          _isThrusting = false;
+
          _audioSource.Stop();
+
+         mainEngineParticle.Stop();
       };
 
-      rotation.performed += context => _rotationInputValue = context.ReadValue<float>();
-      rotation.canceled += _ =>  _rotationInputValue = 0f;
+      rotation.performed += context =>
+      {
+         _rotationInputValue = context.ReadValue<float>();
+
+         switch (_rotationInputValue)
+         {
+            case < 0f:
+               leftEngineParticle.Stop();
+               rightEngineParticle.Play();
+
+               break;
+            case > 0f:
+               rightEngineParticle.Stop();
+               leftEngineParticle.Play();
+
+               break;
+         }
+      };
+
+      rotation.canceled += _ =>
+      {
+         _rotationInputValue = 0f;
+
+         leftEngineParticle.Stop();
+         rightEngineParticle.Stop();
+      };
    }
 
    private void OnDisable()
@@ -53,6 +86,10 @@ public class Movement : MonoBehaviour
       _rotationInputValue = 0f;
 
       _audioSource?.Stop();
+
+      mainEngineParticle?.Stop();
+      leftEngineParticle?.Stop();
+      rightEngineParticle?.Stop();
    }
 
    private void FixedUpdate()
