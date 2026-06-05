@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(AudioSource))]
 public class Movement : MonoBehaviour
 {
    [SerializeField] private InputAction thrust;
@@ -45,6 +47,11 @@ public class Movement : MonoBehaviour
    {
       thrust.Disable();
       rotation.Disable();
+
+      _isThrusting = false;
+      _rotationInputValue = 0f;
+
+      _audioSource?.Stop();
    }
 
    private void FixedUpdate()

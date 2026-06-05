@@ -1,23 +1,38 @@
+using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Movement))]
 public class CollisionHandler : MonoBehaviour
 {
+
+    private readonly WaitForSeconds _delay = new (2f);
+    private Movement _movementScript;
+
+    private void Start()
+    {
+        _movementScript = GetComponent<Movement>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
         {
-            case "Friendly":
-                Debug.Log("Friendly");
-                break;
+             case "Friendly":
+                 break;
             case "Finish":
-                Debug.Log("Finish");
-                break;
-            case "Fuel":
-                Debug.Log("Fuel");
+                StartCoroutine(HandleAfterDelay(isNext: true, reload: false));
                 break;
             default:
-                Debug.Log("you bumped in to untagged object");
+                StartCoroutine(HandleAfterDelay(isNext: false, reload: true));
                 break;
         }
+    }
+
+    private IEnumerator HandleAfterDelay(bool isNext, bool reload)
+    {
+        _movementScript.enabled = false;
+
+        yield return _delay;
+        Helpers.HandleScene(isNext, reload);
     }
 }
