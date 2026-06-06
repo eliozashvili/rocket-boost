@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Rigidbody))]
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] private AudioClip crashSfx;
@@ -29,17 +30,17 @@ public class CollisionHandler : MonoBehaviour
             case "Friendly":
                 break;
             case "Finish":
-                StartCoroutine(HandleAfterDelay(isNext: true, reload: false, audioClip: successSfx));
+                StartCoroutine(HandleSceneAfterDelay(isNext: true, reload: false, audioClip: successSfx));
                 successParticle.Play();
                 break;
             default:
-                StartCoroutine(HandleAfterDelay(isNext: false, reload: true, audioClip: crashSfx));
+                StartCoroutine(HandleSceneAfterDelay(isNext: false, reload: true, audioClip: crashSfx));
                 crashParticle.Play();
                 break;
         }
     }
 
-    private IEnumerator HandleAfterDelay(bool isNext, bool reload, AudioClip audioClip)
+    private IEnumerator HandleSceneAfterDelay(bool isNext, bool reload, AudioClip audioClip)
     {
         // disabling Movement.cs forces to execute OnDisable method
         _movementScript.enabled = false;
