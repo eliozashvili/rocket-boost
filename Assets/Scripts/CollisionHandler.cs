@@ -23,6 +23,11 @@ public class CollisionHandler : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        Helpers.RespondToDebugKeys();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
@@ -30,17 +35,17 @@ public class CollisionHandler : MonoBehaviour
             case "Friendly":
                 break;
             case "Finish":
-                StartCoroutine(HandleSceneAfterDelay(isNext: true, reload: false, audioClip: successSfx));
+                StartCoroutine(HandleSceneAfterDelay(Helpers.SceneActions.LoadNextScene, audioClip: successSfx));
                 successParticle.Play();
                 break;
             default:
-                StartCoroutine(HandleSceneAfterDelay(isNext: false, reload: true, audioClip: crashSfx));
+                StartCoroutine(HandleSceneAfterDelay(Helpers.SceneActions.ReloadScene, audioClip: crashSfx));
                 crashParticle.Play();
                 break;
         }
     }
 
-    private IEnumerator HandleSceneAfterDelay(bool isNext, bool reload, AudioClip audioClip)
+    private IEnumerator HandleSceneAfterDelay(Helpers.SceneActions action, AudioClip audioClip)
     {
         // disabling Movement.cs forces to execute OnDisable method
         _movementScript.enabled = false;
@@ -50,6 +55,6 @@ public class CollisionHandler : MonoBehaviour
             _audioSource.PlayOneShot(audioClip);
 
         yield return _delay;
-        Helpers.HandleScene(isNext, reload);
+        Helpers.HandleScene(action);
     }
 }
