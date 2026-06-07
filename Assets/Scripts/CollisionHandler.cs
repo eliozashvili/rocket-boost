@@ -10,6 +10,7 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] private AudioClip successSfx;
     [SerializeField] private ParticleSystem crashParticle;
     [SerializeField] private ParticleSystem successParticle;
+    [SerializeField] private GameObject playerRef;
 
     private readonly WaitForSeconds _delay = new (2f);
     private Movement _movementScript;
@@ -19,13 +20,13 @@ public class CollisionHandler : MonoBehaviour
     private void Start()
     {
         _movementScript = GetComponent<Movement>();
-        _audioSource =  GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        Helpers.RespondToDebugKeys();
+        Helpers.RespondToDebugKeys(playerRef);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -55,6 +56,6 @@ public class CollisionHandler : MonoBehaviour
             _audioSource.PlayOneShot(audioClip);
 
         yield return _delay;
-        Helpers.HandleScene(action);
+        Helpers.HandleScene(action, playerRef);
     }
 }

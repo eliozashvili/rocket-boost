@@ -169,7 +169,7 @@ Rigidbody:
   m_GameObject: {fileID: 7564076724254750149}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 1
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -249,7 +249,7 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 8
     m_Flags: 0
-  thrustStrength: 1000
+  thrustStrength: 1250
   rotationStrength: 200
   engineThrustSfx: {fileID: 8300000, guid: c00ce392c5a936f44bcd5c93a995f079, type: 3}
   mainEngineParticle: {fileID: 8113415729541471836}
@@ -271,6 +271,7 @@ MonoBehaviour:
   successSfx: {fileID: 8300000, guid: fd49c4248b416d543969c9fceacb6865, type: 3}
   crashParticle: {fileID: 8710918454891140371}
   successParticle: {fileID: 1096404152252628835}
+  playerRef: {fileID: 7564076724254750149}
 --- !u!1001 &1006158840909786237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -346,6 +347,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7237066482585003796}
     m_Modifications:
+    - target: {fileID: 1835430840423115478, guid: 54fd8edacc3a6a541887ee1924eea22b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835430840423115478, guid: 54fd8edacc3a6a541887ee1924eea22b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2001002750445211234, guid: 54fd8edacc3a6a541887ee1924eea22b, type: 3}
       propertyPath: m_Name
       value: Left Thruster
@@ -456,6 +465,10 @@ PrefabInstance:
     - target: {fileID: 6070079930998579113, guid: d5eed21e59face24abd75cd77a7c2b0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238338369804490209, guid: d5eed21e59face24abd75cd77a7c2b0b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.27869675
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -585,6 +598,14 @@ PrefabInstance:
     - target: {fileID: 6390998199089003539, guid: 880d7a6ef9a890846bd020ef514a188c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -84.297
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493950114122135131, guid: 880d7a6ef9a890846bd020ef514a188c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493950114122135131, guid: 880d7a6ef9a890846bd020ef514a188c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

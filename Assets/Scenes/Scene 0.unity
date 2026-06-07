@@ -402,7 +402,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10491056, y: -0.0011648036, z: 0.0004476392, w: 0.9944809}
-  m_LocalPosition: {x: -43.855545, y: 12.663282, z: -22.859695}
+  m_LocalPosition: {x: -43.855545, y: 11.383283, z: -22.859695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -770,7 +770,7 @@ Transform:
   m_GameObject: {fileID: 782174256}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10491056, y: -0.0011648036, z: 0.0004476392, w: 0.9944809}
-  m_LocalPosition: {x: -43.855545, y: 12.663282, z: -22.859695}
+  m_LocalPosition: {x: -43.855545, y: 11.383283, z: -22.859695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1312,29 +1312,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 258787567488709777, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 258787567488709777, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 258787567488709777, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6051318538210203265, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: thrustStrength
-      value: 1500
-      objectReference: {fileID: 0}
     - target: {fileID: 7237066482585003796, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.9
       objectReference: {fileID: 0}
     - target: {fileID: 7237066482585003796, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.49
+      value: 7.21
       objectReference: {fileID: 0}
     - target: {fileID: 7237066482585003796, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1368,33 +1352,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7256953234303381619, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7256953234303381619, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7256953234303381619, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7564076724254750149, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8113415729541471836, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8113415729541471836, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.27869675
-      objectReference: {fileID: 0}
-    - target: {fileID: 8113415729541471836, guid: 1ba88d4edbf2fcf4c89b729ccbfb8a04, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1892,7 +1852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1011338412671291143, guid: 28d7786c3ed50004ea0a4a0621c54908, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0535
+      value: 5.05
       objectReference: {fileID: 0}
     - target: {fileID: 1011338412671291143, guid: 28d7786c3ed50004ea0a4a0621c54908, type: 3}
       propertyPath: m_LocalPosition.z
