@@ -25,17 +25,20 @@ public static class Helpers
         switch (action)
         {
             case SceneActions.LoadNextScene:
-                var nextSceneIndex = sceneIndex == SceneManager.sceneCountInBuildSettings - 1 ? 0 : sceneIndex + 1;
+                var nextSceneIndex = sceneIndex == SceneManager.sceneCountInBuildSettings - 1 ? sceneIndex : sceneIndex + 1;
 
-                Physics.gravity = nextSceneIndex == 2
-                    ? new Vector3(0f, 7f, 0f)
-                    : new Vector3(0f, -12f, 0f);
+                if (nextSceneIndex == 2)
+                    Physics.gravity = new Vector3(0f, 7f, 0f);
 
                 SceneManager.LoadScene(nextSceneIndex);
 
                 break;
             case SceneActions.LoadPreviousScene:
-                var previousSceneIndex = sceneIndex != 0 ? sceneIndex - 1 : 0;
+                var previousSceneIndex = sceneIndex != 0 ? sceneIndex - 1 : sceneIndex;
+
+                if (sceneIndex == 2)
+                    Physics.gravity = new Vector3(0f, -12f, 0f);
+
                 SceneManager.LoadScene(previousSceneIndex);
 
                 break;

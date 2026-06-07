@@ -17,6 +17,8 @@ public class CollisionHandler : MonoBehaviour
     private AudioSource _audioSource;
     private Rigidbody _rb;
 
+    private bool _isHandlingScene;
+
     private void Start()
     {
         _movementScript = GetComponent<Movement>();
@@ -31,19 +33,35 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (_isHandlingScene) return;
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
                 break;
             case "Finish":
-                StartCoroutine(HandleSceneAfterDelay(Helpers.SceneActions.LoadNextScene, audioClip: successSfx));
+                HandleSuccessLanding();
                 successParticle.Play();
                 break;
             default:
-                StartCoroutine(HandleSceneAfterDelay(Helpers.SceneActions.ReloadScene, audioClip: crashSfx));
+                HandleCrash();
                 crashParticle.Play();
                 break;
         }
+    }
+
+    private void HandleSuccessLanding()
+    {
+        _isHandlingScene = true;
+
+        StartCoroutine(HandleSceneAfterDelay(Helpers.SceneActions.LoadNextScene, audioClip: successSfx));
+    }
+
+    private void HandleCrash()
+    {
+        _isHandlingScene = true;
+
+        StartCoroutine(HandleSceneAfterDelay(Helpers.SceneActions.ReloadScene, audioClip: crashSfx));
     }
 
     private IEnumerator HandleSceneAfterDelay(Helpers.SceneActions action, AudioClip audioClip)
