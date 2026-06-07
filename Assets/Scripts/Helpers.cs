@@ -12,6 +12,7 @@ public static class Helpers
         ReloadScene,
         DisableCollision
     }
+
     /// <summary>
     /// Handles scene loading based on specified action
     /// </summary>
@@ -25,23 +26,34 @@ public static class Helpers
         {
             case SceneActions.LoadNextScene:
                 var nextSceneIndex = sceneIndex == SceneManager.sceneCountInBuildSettings - 1 ? 0 : sceneIndex + 1;
+
+                Physics.gravity = nextSceneIndex == 2
+                    ? new Vector3(0f, 7f, 0f)
+                    : new Vector3(0f, -12f, 0f);
+
                 SceneManager.LoadScene(nextSceneIndex);
+
                 break;
             case SceneActions.LoadPreviousScene:
                 var previousSceneIndex = sceneIndex != 0 ? sceneIndex - 1 : 0;
                 SceneManager.LoadScene(previousSceneIndex);
+
                 break;
             case SceneActions.ReloadScene:
                 SceneManager.LoadScene(sceneIndex);
+
                 break;
             case SceneActions.DisableCollision:
                 DisableCollisionAndInertia(player: playerRef);
+
                 break;
             case SceneActions.None:
-                default:
-                    break;
+            default:
+
+                break;
         }
     }
+
     /// <summary>
     /// DEBUG: Handles scene change on key press (0, -, =)
     /// <param name="playerRef">parameter of type GameObject</param>
@@ -57,6 +69,7 @@ public static class Helpers
         else if (Keyboard.current.digit9Key.wasPressedThisFrame)
             HandleScene(action: SceneActions.DisableCollision, playerRef: playerRef);
     }
+
     /// <summary>
     /// DEBUG: disables gravity and collision (9)
     /// <param name="player">parameter of type GameObject</param>

@@ -12,7 +12,7 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] private ParticleSystem successParticle;
     [SerializeField] private GameObject playerRef;
 
-    private readonly WaitForSeconds _delay = new (2f);
+    private readonly WaitForSeconds _delay = new(2f);
     private Movement _movementScript;
     private AudioSource _audioSource;
     private Rigidbody _rb;
